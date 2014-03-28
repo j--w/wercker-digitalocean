@@ -18,7 +18,7 @@ build:
 deploy:
   steps:
     - add-to-known_hosts:
-        hostname: jimbo.io
+        hostname: 107.170.212.51
     - mktemp:
         envvar: PRIVATEKEY_PATH
     - create-file:
@@ -31,12 +31,12 @@ deploy:
         code: |
           pwd
           ls -la
-          scp -i $PRIVATEKEY_PATH app.js package.json root@jimbo.io:/var/local/www
+          scp -i $PRIVATEKEY_PATH app.js package.json root@107.170.212.51:/var/local/www
     - script:
         name: npm install
-        code: ssh -i $PRIVATEKEY_PATH -l root jimbo.io "cd /var/local/www/ &&  npm install --production"
+        code: ssh -i $PRIVATEKEY_PATH -l root 107.170.212.51 "cd /var/local/www/ &&  npm install --production"
     - script:
         name: start application
         code: |
-          ssh -i $PRIVATEKEY_PATH -l root jimbo.io "if [[ \"\$(status node-app)\" = *start/running* ]]; then stop node-app -n ; fi"
-          ssh -i $PRIVATEKEY_PATH -l root jimbo.io start node-app
+          ssh -i $PRIVATEKEY_PATH -l root 107.170.212.51 "if [[ \"\$(status node-app)\" = *start/running* ]]; then stop node-app -n ; fi"
+          ssh -i $PRIVATEKEY_PATH -l root 107.170.212.51 start node-app
