@@ -24,7 +24,7 @@ deploy:
     - create-file:
         name: write key
         filename: $PRIVATEKEY_PATH
-        content: $WERCKER_PRIVATE
+        content: $DigitalOcean_PRIVATE
         overwrite: true
     - script:
         name: transfer application
