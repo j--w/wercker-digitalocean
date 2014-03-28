@@ -13,4 +13,6 @@ app.get('/stuff.json', function(req, res) {
 	res.end();
 });
 
+app.listen(80);
+
 module.exports = app;
